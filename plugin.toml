@@ -1,0 +1,4 @@
+[plugin]
+description = "copy files to docker container preserving directory structure"
+version = "0.0.1"
+[plugin.config]
