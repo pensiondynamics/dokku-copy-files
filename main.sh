@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 copy_files_main() {
   local APP="$1"
   local IMG="dokku/$APP"
@@ -11,7 +13,7 @@ copy_files_main() {
 
     echo "-----> moving ${f} to ${f#${DIR}}"
 
-    id=$(docker run -i -a stdin "$IMG" /bin/bash -c "mkdir -p "$target" && cat > ${f#${DIR}}" < "$f")
+    id=$(docker run -i -a stdin "$IMG" /bin/bash -c "mkdir -p ${target} && cat > ${f#${DIR}}" < "$f")
     # docker attach "$id"
     test "$(docker wait "$id")" -eq 0
     docker commit "$id" "$IMG" > /dev/null
